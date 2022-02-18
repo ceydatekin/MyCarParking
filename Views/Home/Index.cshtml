@@ -1,0 +1,253 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@*@model ogrenci_bilgi_sistemi.Controllers.OgretmenOgrenciViewModel*@
+@*@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}*@
+
+<!DOCTYPE html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<html lang="en">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="~/js/home.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <style href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"></style>
+</head>
+<body>
+    <div aria-live="polite" aria-atomic="true" style="position: relative;">
+        <div class="toast" style="position: absolute; top: 0; right:-15px;  z-index: 2; " data-delay="10000">
+            <div class="toast-header">
+
+                <strong class="mr-auto">Başarılı!</strong>
+                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="toast-body">
+                BAŞARIYLA EKLENDİ
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col">
+                <div class="card" style="width:400px">
+
+                    <img class="card-img-top" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.ajanshaber.com.tr%2Fstorage%2Ffiles%2Fimages%2F2021%2F03%2F25%2Fotopark-eUMS_cover.jpg&f=1&nofb=1" style="height:230px; width:100%">
+                    <div class="card-body">
+                        <h4 class="card-title">Park Girişi</h4>
+                        <p class="card-text">Araba Park Etmek İçin Tıklayınız</p>
+                        <button type="button" class="btn btn-primary btn-lg" onclick="$('#parkgirisi').modal('show')">
+                            Park Et
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card" style="width:400px">
+                    <img class="card-img-top" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.insaathaber.org%2Fwp-content%2Fuploads%2F2018%2F02%2Fotopark-yonetmeligi.jpeg&f=1&nofb=1" alt="Card image" style="height: 230px; width: 100% ">
+                    <div class="card-body">
+                        <h4 class="card-title">Park Çıkışı</h4>
+                        <p class="card-text">Park Yerinden Çıkmak İçin Tıklayınız</p>
+                        <button type="button" class="btn btn-primary btn-lg " onclick="$('#parkcikisi').modal('show')">
+                            Çıkış Yap
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col">
+                <div class="card" style="width:400px">
+
+                    <img class="card-img-top" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Flean.org.tr%2Fwp-content%2Fuploads%2F2018%2F05%2Fegt_547c82f21e919-770x400.png&f=1&nofb=1" style="height:230px; width:100%">
+                    <div class="card-body">
+                        <h4 class="card-title">Yönetici Girişi</h4>
+                        <p class="card-text">Tüm arabaları görüntülemek için giriş yapınız</p>
+                        <button type="button" class="btn btn-primary btn-lg" onclick="$('#admingirisi').modal('show')">
+                           Yönetici Girişi Yap
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card" style="width:400px">
+                    <img class="card-img-top" src="https://images.pexels.com/photos/3862130/pexels-photo-3862130.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Card image" style="height: 230px; width: 100% ">
+                    <div class="card-body">
+                        <h4 class="card-title">Yeni Araba Kaydı</h4>
+                        <p class="card-text">Otoparka arabanızın kaydını yapmak için tıklayınız</p>
+                        <button type="button" class="btn btn-primary btn-lg " onclick="$('#arabakaydi').modal('show')">
+                            Kayıt Et
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row ">
+            <br />
+            <br />
+            <br />
+        </div>
+
+        <!-- /.Araba Park Etme Modal -->
+        <div class="modal fade" tabindex="-1" role="dialog" id="parkgirisi">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Park Girişi</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="row " style="margin:2px; padding:10px">
+                            <div class="input-group flex-nowrap col">
+                                <span class="input-group-text" id="addon-wrapping">Kullanıcı Adı</span>
+                                <input type="text" class="form-control" placeholder="Kullanıcı Adı" aria-label="isim" aria-describedby="addon-wrapping" id="kullaniciadi">
+                            </div>
+                        </div>
+                        <div class="row " style="margin:2px; padding:10px">
+                            <div class="input-group flex-nowrap col">
+                                <span class="input-group-text" id="addon-wrapping">Araba Plakası</span>
+                                <input type="text" class="form-control" placeholder="Araba Plakası" aria-label="Soyad" aria-describedby="addon-wrapping" id="carplate">
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Kapat</button>
+                        <button type="button" class="btn btn-primary" id="parket">Park Et</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+        <!-- /.Park Çıkışı Modal -->
+        <div class="modal fade" tabindex="-1" role="dialog" id="parkcikisi">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Park Çıkışı</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="row " style="margin:2px; padding:10px">
+                            <div class="input-group flex-nowrap col">
+                                <span class="input-group-text" id="addon-wrapping">Kullanıcı Adı</span>
+                                <input type="text" class="form-control" placeholder="Kullanıcı Adı" aria-label="isim" aria-describedby="addon-wrapping" id="kullaniciadi">
+                            </div>
+                        </div>
+                        <div class="row " style="margin:2px; padding:10px">
+                            <div class="input-group flex-nowrap col">
+                                <span class="input-group-text" id="addon-wrapping">Araba Plakası</span>
+                                <input type="text" class="form-control" placeholder="Araba Plakası" aria-label="Soyad" aria-describedby="addon-wrapping" id="plaka">
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Kapat</button>
+                        <button type="button" class="btn btn-primary" id="cikisyap">Çıkış Yap</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+        <!-- /.Admin Girişi Modal -->
+        <div class="modal fade" tabindex="-1" role="dialog" id="admingirisi">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Yönetici Girişi</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="row " style="margin:2px; padding:10px">
+                            <div class="input-group flex-nowrap col">
+                                <span class="input-group-text" id="addon-wrapping">Kullanıcı Adı</span>
+                                <input type="text" class="form-control" placeholder="Kullanıcı Adı" aria-label="isim" aria-describedby="addon-wrapping" id="username">
+                            </div>
+                        </div>
+                        <div class="row " style="margin:2px; padding:10px">
+                            <div class="input-group flex-nowrap col">
+                                <span class="input-group-text" id="addon-wrapping">Parola</span>
+                                <input type="password" class="form-control" aria-label="Soyad" aria-describedby="addon-wrapping" id="password">
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Kapat</button>
+                        <button type="button" class="btn btn-primary" id="login-submit">Yönetici Girişi</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+        <!-- /.Araba Kayıt Girişi Modal -->
+        <div class="modal fade" tabindex="-1" role="dialog" id="arabakaydi">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Kullanıcı Kaydet</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="row " style="margin:2px; padding:10px">
+                            <div class="input-group flex-nowrap col">
+                                <span class="input-group-text" id="addon-wrapping">Kullanıcı Adı</span>
+                                <input type="text" class="form-control" placeholder="Kullanıcı Adı" aria-label="isim" aria-describedby="addon-wrapping" id="name">
+                            </div>
+                        </div>
+                        <div class="row " style="margin:2px; padding:10px">
+                            <div class="input-group flex-nowrap col">
+                                <span class="input-group-text" id="addon-wrapping">Kullanıcı Soyadı</span>
+                                <input type="text" class="form-control" placeholder="Kullanıcı Soyadı" aria-label="isim" aria-describedby="addon-wrapping" id="surname">
+                            </div>
+                        </div>
+                        <div class="row " style="margin:2px; padding:10px">
+                            <div class="input-group flex-nowrap col">
+                                <span class="input-group-text" id="addon-wrapping">Araba Plakası</span>
+                                <input type="text" class="form-control" aria-label="Soyad" aria-describedby="addon-wrapping" id="plate">
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Kapat</button>
+                        <button type="button" class="btn btn-primary" id="yeniarac">Kullanıcıyı Kaydet</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+    </div>
+
+</body>
+</html>

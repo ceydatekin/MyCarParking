@@ -1,0 +1,152 @@
+﻿
+
+@model MyCarParking.ViewModels.OtoparkViewModel
+@{
+    ViewData["Title"] = "listele";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+
+    @*<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>*@
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js" defer></script>
+</head>
+<body>
+    <h1>listele</h1>
+    <div style=" position:absolute; right:16%; top:15%;">
+        <input type="type" onkeyup="myFunction()" name="arama" id="log" />
+    </div>
+    <div class="">
+        <table id="veri" class="table table-striped table-hover ">
+            <thead>
+                <tr>
+                    <th>Plaka</th>
+                    <th>Giriş Saati</th>
+                    <th>Kullanıcı Adı</th>
+
+                </tr>
+            </thead>
+        </table>
+    </div>
+</body>
+
+<script>
+    var datatable;
+    function Listele() {
+
+        $.ajax({
+            type: 'GET',
+            url: '/api/listele',
+            data: '',
+            contentType: "application/json; charset=utf-8",
+            async: false,
+            cache: false,
+            dataType: "json",
+            success: function (resp) {
+                console.log(resp)
+                $('#veri').DataTable().clear().destroy();
+                datatable = $('#veri').DataTable({
+                    orderCellsTop: true,
+                    fixedHeader: true,
+                    searching: false,
+                    bInfo: true,
+                    ordering: true,
+                    data: resp.data,
+
+                    columns: [
+                        {
+                            data: "Carplate"
+                        },
+                        {
+                            data: "Saat"
+                        },
+                        {
+                            data: "Username"
+                        }
+
+                    ],
+                    columnDefs: [],
+                    order: [[1, "asc"]],
+                    colReorder: true,
+                    scrollX: '50px',
+                    select: {
+                        style: 'multi'
+                    },
+
+                });
+            }
+        });
+
+    };
+
+
+    $(document).ready(function () { Listele() });
+
+
+
+
+
+</script>
+
+<script>
+    function myFunction() {
+        var harf = $('#log').val();
+        console.log(harf);
+        var url = '';
+        if (harf == '')
+            url = '/api/listele';
+        else
+            url = '/api/harflelistele?harf=' + harf;
+        $.ajax({
+            type: 'GET',
+            url: url,
+            data: '',
+            contentType: "application/json; charset=utf-8",
+            async: false,
+            cache: false,
+            dataType: "json",
+            success: function (resp) {
+                console.log(resp)
+                $('#veri').DataTable().clear().destroy();
+                datatable = $('#veri').DataTable({
+                    orderCellsTop: true,
+                    fixedHeader: true,
+                    searching: false,
+                    bInfo: true,
+                    ordering: true,
+                    data: resp.data,
+                    columns: [
+                        {
+                            data: "Carplate"
+                        },
+                        {
+                            data: "Saat"
+                        },
+                        {
+                            data: "Username"
+                        }
+
+                    ],
+                    columnDefs: [],
+                    order: [[1, "asc"]],
+                    colReorder: true,
+                    scrollX: '50px',
+                    select: {
+                        style: 'multi'
+                    },
+                });
+            }
+        });
+    }
+</script>
